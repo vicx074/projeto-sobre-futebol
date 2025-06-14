@@ -259,16 +259,5 @@ def player_stats(player_id):
         }
     })
 
-# Handler para o Vercel
-def handler(request):
-    """
-    Esta função é usada pelo Vercel para processar requisições serverless.
-    Ela recebe um objeto de requisição e retorna uma resposta Flask.
-    
-    Para o Vercel, esta função é o ponto de entrada para todas as requisições HTTP.
-    """
-    with app.request_context(request.environ):
-        return app(request.environ)
-
 if __name__ == '__main__':
     app.run(debug=True)
