@@ -45,12 +45,12 @@ export class DashboardComponent implements OnInit {
           this.player = data.player;
           
           // Obter estatísticas por liga
-          if (data.leagues && data.leagues['Stars League']) {
-            this.starsLeagueStats = data.leagues['Stars League'];
+          if (data.leagues && data.leagues['stars_league']) {
+            this.starsLeagueStats = data.leagues['stars_league'];
           }
           
-          if (data.leagues && data.leagues['Premier League']) {
-            this.premierLeagueStats = data.leagues['Premier League'];
+          if (data.leagues && data.leagues['premier_league']) {
+            this.premierLeagueStats = data.leagues['premier_league'];
           }
           
           this.loading = false;

@@ -3,11 +3,13 @@ import requests
 import pandas as pd
 from dotenv import load_dotenv
 import os
+from flask_cors import CORS
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)  # Habilitar CORS para todas as rotas
 
 # Obtém as variáveis de ambiente
 API_URL = os.getenv('API_URL', 'https://v3.football.api-sports.io/players')
