@@ -6,8 +6,8 @@
     "start": "ng serve --port 4200 --open",
     "build": "ng build",
     "build:prod": "ng build --configuration=production --skip-scripts",
-    "build:vercel": "ng build --configuration=production --skip-scripts --output-mode browser",
-    "vercel-build": "ng build --configuration=production --skip-scripts --output-mode browser",
+    "build:vercel": "ng build --configuration=production --skip-scripts --output-mode static",
+    "vercel-build": "ng build --configuration=production --skip-scripts --output-mode static",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:football-dashboard": "node dist/football-dashboard/server/server.mjs"
