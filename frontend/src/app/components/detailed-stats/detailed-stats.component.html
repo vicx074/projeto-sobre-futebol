@@ -109,12 +109,12 @@
     <h4>Resumo da Análise</h4>
     <p *ngIf="starsLeagueStats.goals_shots.goals_per_game > premierLeagueStats.goals_shots.goals_per_game">
       Philippe Coutinho demonstrou maior eficiência ofensiva na Stars League, com uma média de gols por jogo
-      {{ (starsLeagueStats.goals_shots.goals_per_game / premierLeagueStats.goals_shots.goals_per_game).toFixed(1) }}x
+      {{ premierLeagueStats.goals_shots.goals_per_game > 0 ? (starsLeagueStats.goals_shots.goals_per_game / premierLeagueStats.goals_shots.goals_per_game).toFixed(1) + 'x' : 'significativamente' }}
       maior que na Premier League.
     </p>
     <p *ngIf="starsLeagueStats.goals_shots.goals_per_game <= premierLeagueStats.goals_shots.goals_per_game">
       Philippe Coutinho demonstrou maior eficiência ofensiva na Premier League, com uma média de gols por jogo
-      {{ (premierLeagueStats.goals_shots.goals_per_game / starsLeagueStats.goals_shots.goals_per_game).toFixed(1) }}x
+      {{ starsLeagueStats.goals_shots.goals_per_game > 0 ? (premierLeagueStats.goals_shots.goals_per_game / starsLeagueStats.goals_shots.goals_per_game).toFixed(1) + 'x' : 'significativamente' }}
       maior que na Stars League.
     </p>
     <p>

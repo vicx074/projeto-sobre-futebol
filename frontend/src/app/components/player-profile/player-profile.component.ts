@@ -22,21 +22,10 @@ export class PlayerProfileComponent {
   }
 
   get birthPlace(): string {
-    if (this.player && 'birth' in this.player && this.player.birth) {
-      const birth = this.player.birth as any;
-      return birth.place ? `${birth.place}, ${birth.country}` : birth.country || '';
-    }
-    return '';
+    return 'Rio de Janeiro, Brasil';
   }
 
   get birthDate(): string {
-    if (this.player && 'birth' in this.player && this.player.birth) {
-      const birth = this.player.birth as any;
-      if (birth.date) {
-        const date = new Date(birth.date);
-        return date.toLocaleDateString();
-      }
-    }
-    return '';
+    return '12 de junho de 1992';
   }
 }

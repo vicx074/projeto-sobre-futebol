@@ -3,22 +3,48 @@
   margin: 0 auto;
   padding: 2rem 1rem;
   font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f9fafb;
+  min-height: 100vh;
 }
 
 .dashboard-header {
   text-align: center;
   margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3f51b5, #5c6bc0);
+    border-radius: 3px;
+  }
   
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: #333;
     margin-bottom: 0.5rem;
+    transition: color 0.3s;
+    
+    &:hover {
+      color: #3f51b5;
+    }
   }
   
   p {
     font-size: 1.1rem;
     color: #666;
+    transition: transform 0.3s;
+    
+    &:hover {
+      transform: translateY(2px);
+    }
   }
 }
 
@@ -37,6 +63,7 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 1rem;
+    box-shadow: 0 3px 10px rgba(63, 81, 181, 0.2);
   }
   
   p {
@@ -60,6 +87,13 @@
   .error-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
   }
   
   p {
@@ -77,10 +111,17 @@
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     
     &:hover {
       background-color: #303f9f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
     }
   }
 }
@@ -100,6 +141,12 @@
     color: #333;
     position: relative;
     padding-bottom: 0.5rem;
+    transition: color 0.3s, padding-left 0.3s;
+    
+    &:hover {
+      color: #3f51b5;
+      padding-left: 5px;
+    }
     
     &::after {
       content: '';
@@ -109,6 +156,11 @@
       width: 50px;
       height: 3px;
       background-color: #3f51b5;
+      transition: width 0.3s;
+    }
+    
+    &:hover::after {
+      width: 80px;
     }
   }
 }
@@ -128,6 +180,11 @@
   p {
     color: #666;
     font-size: 14px;
+    transition: color 0.3s;
+    
+    &:hover {
+      color: #3f51b5;
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 from flask_cors import CORS
+import json
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -18,16 +19,33 @@ HEADERS = {
     'x-rapidapi-host': os.getenv('API_HOST')
 }
 
+print("Configurações da API:")
+print(f"API_URL: {API_URL}")
+print(f"API_KEY: {os.getenv('API_KEY')}")
+print(f"API_HOST: {os.getenv('API_HOST')}")
+
 def get_player_data(player_id):
     params = {
         'id': player_id,
         'season': '2023'
     }
+    print(f"Buscando dados para jogador {player_id}")
+    print(f"Headers: {json.dumps(HEADERS)}")
+    print(f"Params: {json.dumps(params)}")
     response = requests.get(API_URL, headers=HEADERS, params=params)
+    print(f"Status da resposta: {response.status_code}")
     if response.status_code == 200:
-        return response.json()
+        data = response.json()
+        if 'response' in data and len(data['response']) > 0:
+            print("Dados encontrados com sucesso!")
+            return data
+        else:
+            print("Resposta da API não contém dados do jogador")
+            print(f"Resposta: {response.text[:300]}...")
+            return None
     else:
         print(f"Erro na requisição: {response.status_code}")
+        print(f"Resposta: {response.text[:300]}...")
         return None
 
 # Função para limpar e preparar dados para a API
