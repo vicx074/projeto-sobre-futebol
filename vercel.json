@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "bash ./vercel-build.sh",
   "builds": [
     {
       "src": "app.py",
@@ -8,8 +9,23 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "app.py"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*).(js|css|ico|png|jpg|svg)",
+      "dest": "/$1.$2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
   "env": {
