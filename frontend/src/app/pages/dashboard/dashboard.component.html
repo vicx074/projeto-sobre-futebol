@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Análise de Desempenho - Philippe Coutinho</h1>
+    <p>Comparação entre Stars League (Qatar) e Premier League (Inglaterra) - 2023</p>
+  </header>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Carregando dados...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <div class="error-icon">⚠️</div>
+    <p>{{ error }}</p>
+    <button (click)="loadData()">Tentar novamente</button>
+  </div>
+
+  <div class="dashboard-content" *ngIf="!loading && !error">
+    <!-- Perfil do jogador -->
+    <section class="player-profile-section" *ngIf="player">
+      <app-player-profile [player]="player"></app-player-profile>
+    </section>
+
+    <!-- Estatísticas por liga -->
+    <section class="league-stats-section">
+      <div class="section-header">
+        <h2>Estatísticas por Liga</h2>
+      </div>
+      <div class="league-stats-grid">
+        <app-league-stats 
+          *ngIf="starsLeagueStats"
+          [leagueStats]="starsLeagueStats" 
+          [leagueName]="'Stars League'"
+          [leagueCountry]="'Qatar'"
+          [leagueFlag]="starsLeagueStats.league.flag || ''"
+          [leagueLogo]="starsLeagueStats.league.logo || ''">
+        </app-league-stats>
+
+        <app-league-stats 
+          *ngIf="premierLeagueStats"
+          [leagueStats]="premierLeagueStats" 
+          [leagueName]="'Premier League'"
+          [leagueCountry]="'Inglaterra'"
+          [leagueFlag]="premierLeagueStats.league.flag || ''"
+          [leagueLogo]="premierLeagueStats.league.logo || ''">
+        </app-league-stats>
+      </div>
+    </section>
+
+    <!-- Gráficos de desempenho -->
+    <section class="performance-charts-section">
+      <div class="section-header">
+        <h2>Comparação de Desempenho</h2>
+      </div>
+      <app-performance-charts 
+        *ngIf="starsLeagueStats && premierLeagueStats"
+        [starsLeagueStats]="starsLeagueStats"
+        [premierLeagueStats]="premierLeagueStats">
+      </app-performance-charts>
+    </section>
+
+    <!-- Estatísticas detalhadas -->
+    <section class="detailed-stats-section">
+      <div class="section-header">
+        <h2>Análise Detalhada</h2>
+      </div>
+      <app-detailed-stats 
+        *ngIf="starsLeagueStats && premierLeagueStats"
+        [starsLeagueStats]="starsLeagueStats"
+        [premierLeagueStats]="premierLeagueStats">
+      </app-detailed-stats>
+    </section>
+  </div>
+
+  <footer class="dashboard-footer">
+    <p>&copy; 2025 - Dashboard de Estatísticas do Futebol</p>
+  </footer>
+</div>

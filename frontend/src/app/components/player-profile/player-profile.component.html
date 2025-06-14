@@ -1,0 +1,42 @@
+<div class="player-profile">
+  <div class="player-header">
+    <div class="player-photo">
+      <img [src]="player.photo" [alt]="player.name" />
+    </div>
+    <div class="player-info">
+      <h2>{{ player.name }}</h2>
+      <p class="player-position">Midfielder</p>
+      <div class="player-badges">
+        <span class="nationality">{{ player.nationality }}</span>
+        <span class="age">{{ age }} anos</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="player-details">
+    <div class="detail-item">
+      <span class="label">Nome Completo</span>
+      <span class="value">{{ fullName }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Data de Nascimento</span>
+      <span class="value">{{ birthDate }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Local de Nascimento</span>
+      <span class="value">{{ birthPlace }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Altura</span>
+      <span class="value">{{ player.height || 'N/A' }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Peso</span>
+      <span class="value">{{ player.weight || 'N/A' }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="player-profile-loading" *ngIf="!player">
+  <p>Carregando dados do jogador...</p>
+</div>

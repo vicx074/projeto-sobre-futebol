@@ -1,0 +1,97 @@
+<div class="charts-container" *ngIf="starsLeagueStats || premierLeagueStats">
+  <div class="chart-card">
+    <h3>Comparação de Desempenho</h3>
+    <div class="comparison-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Estatística</th>
+            <th *ngIf="starsLeagueStats">Stars League</th>
+            <th *ngIf="premierLeagueStats">Premier League</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gols por Jogo</td>
+            <td *ngIf="starsLeagueStats">{{ starsLeagueData.goalsPerGame }}</td>
+            <td *ngIf="premierLeagueStats">{{ premierLeagueData.goalsPerGame }}</td>
+          </tr>
+          <tr>
+            <td>Precisão de Chutes</td>
+            <td *ngIf="starsLeagueStats">{{ starsLeagueData.shotAccuracy }}</td>
+            <td *ngIf="premierLeagueStats">{{ premierLeagueData.shotAccuracy }}</td>
+          </tr>
+          <tr>
+            <td>Passes-chave</td>
+            <td *ngIf="starsLeagueStats">{{ starsLeagueData.passesKey }}</td>
+            <td *ngIf="premierLeagueStats">{{ premierLeagueData.passesKey }}</td>
+          </tr>
+          <tr>
+            <td>Taxa de Dribles Bem-sucedidos</td>
+            <td *ngIf="starsLeagueStats">{{ starsLeagueData.dribbleSuccess }}</td>
+            <td *ngIf="premierLeagueStats">{{ premierLeagueData.dribbleSuccess }}</td>
+          </tr>
+          <tr>
+            <td>Taxa de Vitória em Duelos</td>
+            <td *ngIf="starsLeagueStats">{{ starsLeagueData.duelWinRate }}</td>
+            <td *ngIf="premierLeagueStats">{{ premierLeagueData.duelWinRate }}</td>
+          </tr>
+          <tr>
+            <td>Rating</td>
+            <td *ngIf="starsLeagueStats">{{ starsLeagueData.rating }}</td>
+            <td *ngIf="premierLeagueStats">{{ premierLeagueData.rating }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Estatísticas Principais</h3>
+    <div class="stats-grid">
+      <div class="stats-section" *ngIf="starsLeagueStats">
+        <h4>Stars League</h4>
+        <div class="stats-item">
+          <span class="stats-label">Jogos</span>
+          <span class="stats-value">{{ starsLeagueStats.games.appearences }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Minutos</span>
+          <span class="stats-value">{{ starsLeagueStats.games.minutes }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Gols</span>
+          <span class="stats-value">{{ starsLeagueStats.goals_shots.goals }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Assistências</span>
+          <span class="stats-value">{{ starsLeagueStats.goals_shots.assists }}</span>
+        </div>
+      </div>
+
+      <div class="stats-section" *ngIf="premierLeagueStats">
+        <h4>Premier League</h4>
+        <div class="stats-item">
+          <span class="stats-label">Jogos</span>
+          <span class="stats-value">{{ premierLeagueStats.games.appearences }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Minutos</span>
+          <span class="stats-value">{{ premierLeagueStats.games.minutes }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Gols</span>
+          <span class="stats-value">{{ premierLeagueStats.goals_shots.goals }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Assistências</span>
+          <span class="stats-value">{{ premierLeagueStats.goals_shots.assists }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="charts-loading" *ngIf="!starsLeagueStats && !premierLeagueStats">
+  <p>Carregando dados de desempenho...</p>
+</div>

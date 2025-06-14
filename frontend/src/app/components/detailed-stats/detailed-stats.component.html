@@ -1,0 +1,129 @@
+<div class="detailed-stats" *ngIf="starsLeagueStats && premierLeagueStats">
+  <h3>Análise Comparativa Detalhada</h3>
+  
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Estatística</th>
+          <th>Stars League</th>
+          <th>Premier League</th>
+          <th>Diferença</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Jogos -->
+        <tr>
+          <td class="stat-name">Jogos</td>
+          <td>{{ starsLeagueStats.games.appearences }}</td>
+          <td>{{ premierLeagueStats.games.appearences }}</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.games.appearences, premierLeagueStats.games.appearences))">
+            {{ calculateDifference(starsLeagueStats.games.appearences, premierLeagueStats.games.appearences).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Minutos -->
+        <tr>
+          <td class="stat-name">Minutos</td>
+          <td>{{ starsLeagueStats.games.minutes }}</td>
+          <td>{{ premierLeagueStats.games.minutes }}</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.games.minutes, premierLeagueStats.games.minutes))">
+            {{ calculateDifference(starsLeagueStats.games.minutes, premierLeagueStats.games.minutes).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Gols -->
+        <tr>
+          <td class="stat-name">Gols</td>
+          <td>{{ starsLeagueStats.goals_shots.goals }}</td>
+          <td>{{ premierLeagueStats.goals_shots.goals }}</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.goals_shots.goals, premierLeagueStats.goals_shots.goals))">
+            {{ calculateDifference(starsLeagueStats.goals_shots.goals, premierLeagueStats.goals_shots.goals).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Assistências -->
+        <tr>
+          <td class="stat-name">Assistências</td>
+          <td>{{ starsLeagueStats.goals_shots.assists }}</td>
+          <td>{{ premierLeagueStats.goals_shots.assists }}</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.goals_shots.assists, premierLeagueStats.goals_shots.assists))">
+            {{ calculateDifference(starsLeagueStats.goals_shots.assists, premierLeagueStats.goals_shots.assists).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Gols por jogo -->
+        <tr>
+          <td class="stat-name">Gols por jogo</td>
+          <td>{{ starsLeagueStats.goals_shots.goals_per_game.toFixed(2) }}</td>
+          <td>{{ premierLeagueStats.goals_shots.goals_per_game.toFixed(2) }}</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.goals_shots.goals_per_game, premierLeagueStats.goals_shots.goals_per_game))">
+            {{ calculateDifference(starsLeagueStats.goals_shots.goals_per_game, premierLeagueStats.goals_shots.goals_per_game).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Precisão de chutes -->
+        <tr>
+          <td class="stat-name">Precisão de chutes</td>
+          <td>{{ starsLeagueStats.goals_shots.shot_accuracy.toFixed(1) }}%</td>
+          <td>{{ premierLeagueStats.goals_shots.shot_accuracy.toFixed(1) }}%</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.goals_shots.shot_accuracy, premierLeagueStats.goals_shots.shot_accuracy))">
+            {{ calculateDifference(starsLeagueStats.goals_shots.shot_accuracy, premierLeagueStats.goals_shots.shot_accuracy).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Passes-chave -->
+        <tr>
+          <td class="stat-name">Passes-chave</td>
+          <td>{{ starsLeagueStats.playmaking.passes_key }}</td>
+          <td>{{ premierLeagueStats.playmaking.passes_key }}</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.playmaking.passes_key, premierLeagueStats.playmaking.passes_key))">
+            {{ calculateDifference(starsLeagueStats.playmaking.passes_key, premierLeagueStats.playmaking.passes_key).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Taxa de dribles bem-sucedidos -->
+        <tr>
+          <td class="stat-name">Taxa de dribles bem-sucedidos</td>
+          <td>{{ starsLeagueStats.playmaking.dribble_success_rate.toFixed(1) }}%</td>
+          <td>{{ premierLeagueStats.playmaking.dribble_success_rate.toFixed(1) }}%</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.playmaking.dribble_success_rate, premierLeagueStats.playmaking.dribble_success_rate))">
+            {{ calculateDifference(starsLeagueStats.playmaking.dribble_success_rate, premierLeagueStats.playmaking.dribble_success_rate).toFixed(1) }}%
+          </td>
+        </tr>
+        
+        <!-- Taxa de vitória em duelos -->
+        <tr>
+          <td class="stat-name">Taxa de vitória em duelos</td>
+          <td>{{ starsLeagueStats.defensive.duel_win_rate.toFixed(1) }}%</td>
+          <td>{{ premierLeagueStats.defensive.duel_win_rate.toFixed(1) }}%</td>
+          <td class="diff" [ngClass]="getDifferenceClass(calculateDifference(starsLeagueStats.defensive.duel_win_rate, premierLeagueStats.defensive.duel_win_rate))">
+            {{ calculateDifference(starsLeagueStats.defensive.duel_win_rate, premierLeagueStats.defensive.duel_win_rate).toFixed(1) }}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="analysis-summary">
+    <h4>Resumo da Análise</h4>
+    <p *ngIf="starsLeagueStats.goals_shots.goals_per_game > premierLeagueStats.goals_shots.goals_per_game">
+      Philippe Coutinho demonstrou maior eficiência ofensiva na Stars League, com uma média de gols por jogo
+      {{ (starsLeagueStats.goals_shots.goals_per_game / premierLeagueStats.goals_shots.goals_per_game).toFixed(1) }}x
+      maior que na Premier League.
+    </p>
+    <p *ngIf="starsLeagueStats.goals_shots.goals_per_game <= premierLeagueStats.goals_shots.goals_per_game">
+      Philippe Coutinho demonstrou maior eficiência ofensiva na Premier League, com uma média de gols por jogo
+      {{ (premierLeagueStats.goals_shots.goals_per_game / starsLeagueStats.goals_shots.goals_per_game).toFixed(1) }}x
+      maior que na Stars League.
+    </p>
+    <p>
+      O desempenho do jogador foi significativamente diferente entre as duas ligas, refletindo os diferentes
+      níveis de competitividade e seu papel tático em cada equipe.
+    </p>
+  </div>
+</div>
+
+<div class="detailed-stats-loading" *ngIf="!starsLeagueStats || !premierLeagueStats">
+  <p>Carregando análise comparativa detalhada...</p>
+</div>

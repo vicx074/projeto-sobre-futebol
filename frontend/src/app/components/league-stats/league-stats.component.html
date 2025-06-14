@@ -1,0 +1,84 @@
+<div class="league-stats">
+  <div class="league-header">
+    <div class="league-logo" *ngIf="leagueLogo">
+      <img [src]="leagueLogo" [alt]="leagueName" />
+    </div>
+    <div class="league-info">
+      <h3>{{ leagueName }}</h3>
+      <div class="league-country" *ngIf="leagueCountry">
+        <img *ngIf="leagueFlag" [src]="leagueFlag" [alt]="leagueCountry" class="country-flag" />
+        <span>{{ leagueCountry }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stats-card">
+      <h4>Jogos</h4>
+      <div class="stats-item">
+        <span class="label">Partidas</span>
+        <span class="value">{{ leagueStats.games.appearences }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Titular</span>
+        <span class="value">{{ leagueStats.games.lineups }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Minutos</span>
+        <span class="value">{{ leagueStats.games.minutes }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Rating</span>
+        <span class="value">{{ leagueStats.games.rating?.toFixed(1) || 'N/A' }}</span>
+      </div>
+    </div>
+
+    <div class="stats-card">
+      <h4>Gols e Chutes</h4>
+      <div class="stats-item">
+        <span class="label">Gols</span>
+        <span class="value">{{ leagueStats.goals_shots.goals }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Assistências</span>
+        <span class="value">{{ leagueStats.goals_shots.assists }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Precisão de Chutes</span>
+        <span class="value">{{ leagueStats.goals_shots.shot_accuracy.toFixed(1) }}%</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Gols por Jogo</span>
+        <span class="value">{{ leagueStats.goals_shots.goals_per_game.toFixed(2) }}</span>
+      </div>
+    </div>
+
+    <div class="stats-card">
+      <h4>Criação</h4>
+      <div class="stats-item">
+        <span class="label">Passes</span>
+        <span class="value">{{ leagueStats.playmaking.passes_total || 0 }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Passes-chave</span>
+        <span class="value">{{ leagueStats.playmaking.passes_key }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Dribles Tentados</span>
+        <span class="value">{{ leagueStats.playmaking.dribbles_attempts }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Dribles Bem-sucedidos</span>
+        <span class="value">{{ leagueStats.playmaking.dribbles_success }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Taxa de Sucesso</span>
+        <span class="value">{{ leagueStats.playmaking.dribble_success_rate.toFixed(1) }}%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="league-stats-loading" *ngIf="!leagueStats">
+  <p>Carregando estatísticas da liga...</p>
+</div>
