@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class FootballApiService {
   private apiUrl = environment.production 
-    ? '/api' 
+    ? environment.apiUrl 
     : 'http://localhost:5000/api';
   private http = inject(HttpClient);
 
