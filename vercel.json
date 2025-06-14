@@ -1,27 +1,13 @@
 {
   "version": 2,
   "buildCommand": "bash ./vercel-build.sh",
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "app.py"
+      "dest": "/app.py"
     },
     {
       "handle": "filesystem"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*).(js|css|ico|png|jpg|svg)",
-      "dest": "/$1.$2"
     },
     {
       "src": "/(.*)",
@@ -29,6 +15,8 @@
     }
   ],
   "env": {
-    "FLASK_ENV": "production"
+    "API_URL": "https://v3.football.api-sports.io/players",
+    "API_KEY": "bcd85d3d22c40a5debd42f5006ff10bf",
+    "API_HOST": "v3.football.api-sports.io"
   }
 } 

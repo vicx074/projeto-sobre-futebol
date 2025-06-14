@@ -1,8 +1,4 @@
 {
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/(.*).(js|css|ico|png|jpg|svg)", "dest": "/$1.$2" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "framework": "angular",
+  "outputDirectory": "dist/football-dashboard/browser"
 } 

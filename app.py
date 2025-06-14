@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Request
 import requests
 import pandas as pd
 from dotenv import load_dotenv
@@ -15,8 +15,8 @@ CORS(app)  # Habilitar CORS para todas as rotas
 # API configs
 API_URL = os.getenv('API_URL', 'https://v3.football.api-sports.io/players')
 HEADERS = {
-    'x-rapidapi-key': os.getenv('API_KEY'),
-    'x-rapidapi-host': os.getenv('API_HOST')
+    'x-rapidapi-key': os.getenv('API_KEY', 'bcd85d3d22c40a5debd42f5006ff10bf'),
+    'x-rapidapi-host': os.getenv('API_HOST', 'v3.football.api-sports.io')
 }
 
 print("Configurações da API:")
@@ -186,6 +186,17 @@ def format_for_api(player_info, league_data):
         'stats': league_stats
     }
 
+@app.route('/')
+def index():
+    return jsonify({
+        "status": "online",
+        "message": "API de estatísticas de futebol está funcionando",
+        "endpoints": [
+            "/api/coutinho/comparacao",
+            "/api/player/<player_id>/stats"
+        ]
+    })
+
 @app.route('/api/coutinho/comparacao')
 def coutinho_comparacao():
     data = get_player_data(147)  # Id do Coutinho
@@ -246,6 +257,17 @@ def player_stats(player_id):
             'premier_league': premier_league_api['stats']
         }
     })
+
+# Handler para o Vercel
+def handler(request):
+    """
+    Esta função é usada pelo Vercel para processar requisições serverless.
+    Ela recebe um objeto de requisição e retorna uma resposta Flask.
+    
+    Para o Vercel, esta função é o ponto de entrada para todas as requisições HTTP.
+    """
+    with app.request_context(request.environ):
+        return app(request.environ)
 
 if __name__ == '__main__':
     app.run(debug=True)
