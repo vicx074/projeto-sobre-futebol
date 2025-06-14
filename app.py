@@ -10,7 +10,8 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Habilitar CORS para todas as rotas
+# Configuração mais específica do CORS para permitir acesso do GitHub Pages
+CORS(app, resources={r"/api/*": {"origins": ["https://vicx074.github.io", "http://localhost:4200"]}})
 
 # API configs
 API_URL = os.getenv('API_URL', 'https://v3.football.api-sports.io/players')
