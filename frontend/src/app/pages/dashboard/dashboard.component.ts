@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
         if (data) {
           this.player = data.player;
           
-          // Obter estatísticas por liga
+          // Mapeia ligas
           if (data.leagues && data.leagues['stars_league']) {
             this.starsLeagueStats = data.leagues['stars_league'];
           }

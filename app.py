@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)  # Habilitar CORS para todas as rotas
 
-# Obtém as variáveis de ambiente
+# API configs
 API_URL = os.getenv('API_URL', 'https://v3.football.api-sports.io/players')
 HEADERS = {
     'x-rapidapi-key': os.getenv('API_KEY'),
@@ -43,7 +43,7 @@ def prepare_data_for_api(df):
         if col in df_clean.columns:
             df_clean[col] = df_clean[col].fillna(0)
     
-    # Calcular métricas de desempenho
+    # Calcular métricas
     if 'games.appearences' in df_clean.columns and df_clean['games.appearences'].sum() > 0:
         # Gols por jogo
         if 'goals.total' in df_clean.columns:
@@ -81,9 +81,6 @@ def prepare_data_for_api(df):
 
 # Formatar dados para a API
 def format_for_api(player_info, league_data):
-    """
-    Formata os dados do jogador e estatísticas para serem servidos pela API
-    """
     # Informações básicas do jogador
     player_basic = {
         'id': player_info['player']['id'],
@@ -223,7 +220,7 @@ def player_stats(player_id):
     stars_league_api = format_for_api(player_info, stars_league_clean)
     premier_league_api = format_for_api(player_info, premier_league_clean)
     
-    # Retornar JSON formatado
+    # Retornar JSON
     return jsonify({
         'player': stars_league_api['player'],
         'leagues': {

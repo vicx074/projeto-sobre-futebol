@@ -6,7 +6,7 @@ import { LeagueStats } from '../../models/player.model';
   selector: 'app-performance-charts',
   standalone: true,
   imports: [CommonModule],
-  schemas: [NO_ERRORS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA], // Ignora erros
   templateUrl: './performance-charts.component.html',
   styleUrl: './performance-charts.component.scss'
 })
@@ -14,7 +14,7 @@ export class PerformanceChartsComponent implements OnChanges {
   @Input() starsLeagueStats?: LeagueStats;
   @Input() premierLeagueStats?: LeagueStats;
 
-  // Dados para exibição simplificada
+  // Dados formatados
   starsLeagueData: any = {};
   premierLeagueData: any = {};
 
