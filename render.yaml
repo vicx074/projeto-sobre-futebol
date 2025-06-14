@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: football-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: API_URL
+        value: https://v3.football.api-sports.io/players
+      - key: API_KEY
+        value: bcd85d3d22c40a5debd42f5006ff10bf
+      - key: API_HOST
+        value: v3.football.api-sports.io 
