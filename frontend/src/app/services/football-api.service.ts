@@ -14,11 +14,11 @@ export class FootballApiService {
 
   // Buscar dados básicos de comparação do Coutinho
   getCoutinhoComparison(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/coutinho/comparacao`);
+    return this.http.get(`${this.apiUrl}/api/coutinho/comparacao`);
   }
 
   // Buscar estatísticas detalhadas de um jogador
   getPlayerStats(playerId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/player/${playerId}/stats`);
+    return this.http.get(`${this.apiUrl}/api/player/${playerId}/stats`);
   }
 }
