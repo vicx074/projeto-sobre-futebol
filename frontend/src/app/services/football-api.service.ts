@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FootballApiService {
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = environment.production 
+    ? '/api' 
+    : 'http://localhost:5000/api';
   private http = inject(HttpClient);
 
   // Buscar dados básicos de comparação do Coutinho
